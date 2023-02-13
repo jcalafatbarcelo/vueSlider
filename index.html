@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/owSlider.css">
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script type="text/javascript" src="vueSlider.js"></script>
+</head>
+<body>
+    <div class="owSlider owSlider-vue"><div class="owSlider-container">
+            <div id="foto-1" class="owSlider-item"><picture><img src="img/foto-1.jpg" width="648px" height="816px" /></picture></div>
+            <div id="foto-2" class="owSlider-item"><picture><img src="img/foto-2.jpg" width="648px" height="816px" /></picture></div>
+            <div id="foto-3" class="owSlider-item"><picture><img src="img/foto-3.jpg" width="648px" height="816px" /></picture></div>
+            <div id="foto-4" class="owSlider-item"><picture><img src="img/foto-4.jpg" width="648px" height="816px" /></picture></div>
+            <div id="foto-5" class="owSlider-item"><picture><img src="img/foto-5.jpg" width="648px" height="816px" /></picture></div>
+    </div></div>
+    <script>
+        const slider = new vueSlider({
+    listadoItems: document.querySelectorAll(".owSlider"),      // querySelector al contenedor
+    query: ".owSlider-item",                                        // query para hacer queryselector del item
+    init: 0,
+    show: {
+        mobile: 1,
+        tablet: 1,
+        default: 2,
+        custom: []
+    },                                                    // Item desde el que inicializar el slider
+    timeout: {
+        mobile: 1500,
+        tablet: 1500,
+        default: 1500,
+        custom: []
+    },  
+    options: { 
+        mode: "vue",    // [default|solo]
+        loop: true,
+        finger: true,
+        nav: {
+            buttons: true,
+            arrows: true,
+        },                                     
+        autoplay: {                                                     // Funciones autoplay
+            estado: false,                                              // true|false => Activar o no
+            query: window.matchMedia('(max-width: 767px)').matches,     // true|false => Desactivar si es true (combinar con window.MatchMeadia)
+            time: 5000 },                                               // tiempo en milisegundos entre rotacion y rotacion
+        overflow: {                                                     // Activar overflow
+            estado: false,                                              // Mostrar en true los elementos Pre/post
+            items: 1,                                                   // Items para mostrar
+            query: window.matchMedia('(min-width: 1367px)').matches,    // true|false => Desactivar si es true (combinar con window.MatchMeadia)
+        },
+        modeSolo: { // Funciones solo
+            mini: false // Mostrar miniaturas [true|false]:
+        },
+        modeVue: {  // Configuración vue
+            mini: false,
+        }
+
+    },
+    customMedias: [
+        {query: '(min-width: 1024px) and (max-width: max-width: 1279px)', show:1, timeout: 500},
+        {query: '(min-width: 1280px) and (max-width: 1365px)', show:1, timeout: 500}
+    ]
+});
+        
+        slider.sliderLoadAll()
+    </script>
+</body>
+</html>
